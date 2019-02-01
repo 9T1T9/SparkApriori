@@ -9,6 +9,7 @@ Input the following command: spark-submit Apriori.py retail.txt.
 
 Then supports of frequent itemsets are ouput.
 
+Minimum support can be changed by change the min_sup parameter in the program.   
 retail.txt can be replaced by any other transaction files.
 
 Because pyspark is combined into the program, the program can be easily adjusted to run on the distributed environment.  
