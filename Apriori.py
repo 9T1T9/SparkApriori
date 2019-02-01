@@ -8,6 +8,7 @@ sc = SparkContext.getOrCreate()
 spark = SparkSession(sc)
 from itertools import combinations
 import timeit
+import sys
 
 min_sup=0.1
 
@@ -133,18 +134,18 @@ def printresult(itemsets):
 #        print("support: %s , %.3f" % (str(itemsets[itemset])))
 
 
-if __name__ == '__main__':
-    path='/home/zyt/bdt/5003/T10I4D100K.dat'
-    transactions=spark.sparkContext.textFile(path,10).map(lambda x: [y for y in x.split()])
-    copytimes=5
-    ntransaction=spark.sparkContext.emptyRDD()
-    for i in range(0,copytimes+1):
-       ntransaction=ntransaction.union(transactions)
-    start = timeit.default_timer()
-    haha=SparkApriori(transactions,0.002)
-    elapsed=timeit.default_timer()-start
-    print(elapsed)
-    #printresult(haha)
+
+path=sys.argv[1]
+transactions=spark.sparkContext.textFile(path,10).map(lambda x: [y for y in x.split()])
+copytimes=5
+ntransaction=spark.sparkContext.emptyRDD()
+for i in range(0,copytimes+1):
+    ntransaction=ntransaction.union(transactions)
+start = timeit.default_timer()
+haha=SparkApriori(transactions,0.002)
+elapsed=timeit.default_timer()-start
+print(elapsed)
+printresult(haha)
     
     
     
